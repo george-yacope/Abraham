@@ -1,0 +1,717 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>رحلة إبراهيم</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap');
+      
+      :root {
+        --bg: #F0F9FF;
+        --on-bg: #0C4A6E;
+        --primary: #3B82F6;
+        --primary-dim: #2563EB;
+        --primary-container: #DBEAFE;
+        --on-primary: #FFFFFF;
+        --on-primary-container: #1E3A8A;
+        --secondary: #F59E0B;
+        --on-secondary: #FFFFFF;
+        --secondary-container: #FEF3C7;
+        --on-secondary-container: #92400E;
+        --tertiary: #10B981;
+        --tertiary-container: #D1FAE5;
+        --on-tertiary-container: #064E3B;
+        --error: #EF4444;
+        --on-error: #FFFFFF;
+        --error-container: #FEE2E2;
+        --on-error-container: #7F1D1D;
+        --surface: #FFFFFF;
+        --on-surface: #0F172A;
+        --surface-variant: #E0F2FE;
+        --on-surface-variant: #0369A1;
+        --outline: #BAE6FD;
+        --surface-container-low: #F8FAFC;
+        --surface-container: #F1F5F9;
+        --surface-container-high: #E2E8F0;
+        --surface-container-highest: #CBD5E1;
+        --surface-container-lowest: #FFFFFF;
+        --bg-pattern-color: #3B82F6;
+      }
+
+      .dark {
+        --bg: #040914;
+        --on-bg: #F0F9FF;
+        --primary: #60A5FA;
+        --primary-dim: #3B82F6;
+        --primary-container: #1E3A8A;
+        --on-primary: #040914;
+        --on-primary-container: #DBEAFE;
+        --secondary: #FBBF24;
+        --on-secondary: #451A03;
+        --secondary-container: #78350F;
+        --on-secondary-container: #FEF3C7;
+        --tertiary: #34D399;
+        --tertiary-container: #064E3B;
+        --on-tertiary-container: #D1FAE5;
+        --error: #F87171;
+        --on-error: #450A0A;
+        --error-container: #7F1D1D;
+        --on-error-container: #FEE2E2;
+        --surface: #0F172A;
+        --on-surface: #F8FAFC;
+        --surface-variant: #1E293B;
+        --on-surface-variant: #94A3B8;
+        --outline: #334155;
+        --surface-container-low: #040914;
+        --surface-container: #0F172A;
+        --surface-container-high: #1E293B;
+        --surface-container-highest: #334155;
+        --surface-container-lowest: #020617;
+        --bg-pattern-color: #1E3A8A;
+      }
+
+      body {
+        font-family: 'Cairo', sans-serif;
+        background-image: radial-gradient(var(--bg-pattern-color) 0.5px, transparent 0.5px);
+        background-size: 24px 24px;
+        background-color: var(--bg);
+        color: var(--on-bg);
+        transition: background-color 0.5s, color 0.5s;
+        min-height: 100-screen;
+      }
+
+      /* Custom tailwind-like shortcuts */
+      .bg-background { background-color: var(--bg); }
+      .text-on-background { color: var(--on-bg); }
+      .bg-primary { background-color: var(--primary); }
+      .text-primary { color: var(--primary); }
+      .bg-primary-container { background-color: var(--primary-container); }
+      .text-on-primary-container { color: var(--on-primary-container); }
+      .bg-secondary { background-color: var(--secondary); }
+      .text-secondary { color: var(--secondary); }
+      .bg-tertiary { background-color: var(--tertiary); }
+      .text-tertiary { color: var(--tertiary); }
+      .bg-surface-container-low { background-color: var(--surface-container-low); }
+      .bg-surface-container-lowest { background-color: var(--surface-container-lowest); }
+      .bg-surface-container-highest { background-color: var(--surface-container-highest); }
+      .border-outline { border-color: var(--outline); }
+      .text-on-surface { color: var(--on-surface); }
+      .text-on-surface-variant { color: var(--on-surface-variant); }
+      .bg-error { background-color: var(--error); }
+      .text-error { color: var(--error); }
+      .bg-primary-dim { background-color: var(--primary-dim); }
+
+      .font-headline { font-weight: 900; }
+      .font-bold { font-weight: 700; }
+      .font-black { font-weight: 900; }
+      
+      .btn-bounce:active { transform: scale(0.9); }
+      .transition-all { transition: all 0.3s; }
+      
+      /* Animation classes */
+      .animate-in { animation: fadeIn 0.5s ease-out forwards; }
+      @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    </style>
+    <script>
+      // Tailwind Configuration for CDN
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              primary: 'var(--primary)',
+              secondary: 'var(--secondary)',
+              tertiary: 'var(--tertiary)',
+              background: 'var(--bg)',
+              outline: 'var(--outline)',
+              error: 'var(--error)',
+            }
+          }
+        }
+      }
+    </script>
+  </head>
+  <body class="bg-background text-on-background min-h-screen font-body selection:bg-primary-container">
+    <div id="app" class="max-w-4xl mx-auto pb-32">
+      <!-- Header -->
+      <header class="sticky top-0 z-50 flex items-center justify-between px-6 py-4 bg-background/80 backdrop-blur-md border-b border-outline/10">
+        <div class="flex items-center gap-4">
+          <button class="w-12 h-12 flex items-center justify-center rounded-full bg-surface-container-low text-primary shadow-sm hover:scale-105 transition-transform">
+            <i data-lucide="arrow-right" class="w-6 h-6"></i>
+          </button>
+          <h1 class="text-2xl font-black text-primary font-headline">رحلة إبراهيم</h1>
+        </div>
+        <div class="flex items-center gap-3">
+          <button id="theme-toggle" class="w-12 h-12 flex items-center justify-center rounded-full bg-surface-container-low text-primary/70 hover:scale-110 transition-transform btn-bounce shadow-sm">
+            <i data-lucide="moon" id="theme-icon" class="w-6 h-6"></i>
+          </button>
+        </div>
+      </header>
+
+      <main id="main-content" class="space-y-8">
+        <!-- Home Page (Default) -->
+        <section id="view-home" class="view-section space-y-8 pb-12 animate-in fade-in duration-500">
+          
+          <!-- Hero Section -->
+          <div class="px-6">
+            <div class="relative w-full aspect-[4/3] sm:aspect-[21/9] rounded-[2.5rem] overflow-hidden shadow-2xl border-4 border-surface-container-highest group">
+              <div class="absolute inset-0 bg-black/40 z-10 duration-500 group-hover:bg-black/30"></div>
+              <img src="https://image.pollinations.ai/prompt/Epic_cinematic_shot_of_ancient_patriarch_Abraham_leading_camels_through_a_beautiful_desert_at_sunset_golden_hour_masterpiece?width=2000&height=800&nologo=true" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" alt="Desert Journey" crossorigin="anonymous" referrerpolicy="no-referrer">
+              <div class="absolute inset-0 z-20 flex flex-col items-center justify-center text-center p-6 bg-gradient-to-t from-black/80 via-transparent to-transparent">
+                <span class="bg-primary/90 text-white px-5 py-2 rounded-full text-sm font-bold tracking-widest mb-4 shadow-lg backdrop-blur">خليل الله</span>
+                <h2 class="text-4xl sm:text-6xl font-black text-white mb-4 font-headline drop-shadow-2xl leading-tight">رحلة أبونا إبراهيم</h2>
+                <p class="text-white/90 text-base sm:text-lg max-w-lg font-bold drop-shadow-md">امشي ورا إبراهيم من أور لحد ما وصل لأرض الموعود، وشوف أكبر حكاية إيمان في الدنيا.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick Stats / Buttons (The Hook) -->
+          <div class="px-6 grid grid-cols-2 md:grid-cols-3 gap-4">
+            <button onclick="window.switchViewTo('map')" class="bg-surface-container-lowest p-6 rounded-[2rem] shadow-sm border border-outline/20 hover:border-primary/40 hover:shadow-xl transition-all group flex flex-col items-center text-center gap-3">
+              <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+                <i data-lucide="map" class="w-8 h-8 fill-current opacity-20 absolute"></i>
+                <i data-lucide="map" class="w-8 h-8 relative z-10"></i>
+              </div>
+              <span class="font-black text-primary font-headline text-lg">خريطة الرحلة</span>
+            </button>
+            <button onclick="window.switchViewTo('characters')" class="bg-surface-container-lowest p-6 rounded-[2rem] shadow-sm border border-outline/20 hover:border-secondary/40 hover:shadow-xl transition-all group flex flex-col items-center text-center gap-3">
+              <div class="w-16 h-16 bg-secondary/10 rounded-full flex items-center justify-center text-secondary group-hover:scale-110 transition-transform">
+                <i data-lucide="users" class="w-8 h-8 fill-current opacity-20 absolute"></i>
+                <i data-lucide="users" class="w-8 h-8 relative z-10"></i>
+              </div>
+              <span class="font-black text-secondary font-headline text-lg">دليل الشخصيات</span>
+            </button>
+            <button onclick="window.switchViewTo('ages')" class="hidden md:flex col-span-2 md:col-span-1 bg-surface-container-lowest p-6 rounded-[2rem] shadow-sm border border-outline/20 hover:border-tertiary/40 hover:shadow-xl transition-all group flex-col items-center text-center gap-3">
+              <div class="w-16 h-16 bg-tertiary/10 rounded-full flex items-center justify-center text-tertiary group-hover:scale-110 transition-transform">
+                <i data-lucide="hourglass" class="w-8 h-8 fill-current opacity-20 absolute"></i>
+                <i data-lucide="hourglass" class="w-8 h-8 relative z-10"></i>
+              </div>
+              <span class="font-black text-tertiary font-headline text-lg">أعمار إبراهيم</span>
+            </button>
+          </div>
+
+          <div class="px-6 md:hidden">
+            <button onclick="window.switchViewTo('ages')" class="w-full bg-surface-container-lowest p-6 rounded-[2rem] shadow-sm border border-outline/20 hover:border-tertiary/40 hover:shadow-xl transition-all group flex flex-col items-center text-center gap-3">
+                <div class="w-16 h-16 bg-tertiary/10 rounded-full flex items-center justify-center text-tertiary group-hover:scale-110 transition-transform">
+                  <i data-lucide="hourglass" class="w-8 h-8 fill-current opacity-20 absolute"></i>
+                  <i data-lucide="hourglass" class="w-8 h-8 relative z-10"></i>
+                </div>
+                <span class="font-black text-tertiary font-headline text-lg">جدول أعمار إبراهيم</span>
+              </button>
+          </div>
+
+          <!-- Chat Teaser -->
+          <div class="px-6">
+            <button onclick="window.switchViewTo('chat')" class="w-full bg-gradient-to-br from-primary to-primary-dim p-8 rounded-[2.5rem] shadow-2xl flex items-center justify-between text-white group overflow-hidden relative">
+              <div class="absolute -right-10 -top-10 w-40 h-40 bg-white/10 rounded-full blur-3xl group-hover:scale-150 transition-transform duration-700"></div>
+              <div class="flex items-center gap-6 relative z-10">
+                <div class="w-20 h-20 bg-white/20 rounded-2xl flex items-center justify-center backdrop-blur-md shadow-inner">
+                  <i data-lucide="message-circle" class="w-10 h-10"></i>
+                </div>
+                <div class="text-right">
+                  <h3 class="text-2xl font-black font-headline">دردش مع إبراهيم</h3>
+                  <p class="text-white/80 font-bold">اسأل أبونا إبراهيم وخد منه الحكمة والحكاوي</p>
+                </div>
+              </div>
+              <i data-lucide="chevron-left" class="w-8 h-8 opacity-50 group-hover:translate-x--2 transition-transform"></i>
+            </button>
+          </div>
+
+          <!-- Story Section -->
+          <div class="px-6">
+            <div class="bg-surface-container-lowest rounded-[2.5rem] p-8 shadow-sm border border-outline/20 text-right relative overflow-hidden">
+              <i data-lucide="book-open" class="absolute -right-6 -top-6 w-32 h-32 text-surface-container-highest/50 -rotate-12 pointer-events-none"></i>
+              <div class="flex items-center justify-end gap-3 mb-6 relative z-10">
+                <h3 class="text-3xl font-black text-on-surface font-headline">مين هو إبراهيم؟</h3>
+                <div class="w-12 h-12 bg-primary-container rounded-full flex items-center justify-center text-on-primary-container shadow-inner">
+                  <i data-lucide="quote" class="w-6 h-6"></i>
+                </div>
+              </div>
+              <p class="text-on-surface-variant leading-loose font-bold text-base relative z-10">
+                زمان قوي، في مدينة أور الكلدانيين اللي كانت مشهورة وغنية، كان فيه راجل بركة اسمه أبرآم. لما ربنا ناداه، مكدبش خبر، وخد قرار شجاع إنه يسيب كل حاجة ويسافر في الصحرا وهو واثق في وعد ربنا.<br/><br/>
+                الحكاية مكنتش مجرد سفر، دي كانت رحلة إيمان كبيرة بنيت عليها أمم. إبراهيم هو "أبو المؤمنين" وأكبر مثال للثقة في كلام ربنا مهما كانت الظروف.
+              </p>
+            </div>
+          </div>
+
+          <!-- The Lands (Bento Grid) -->
+          <div class="px-6">
+            <h3 class="text-2xl font-black text-primary mb-6 font-headline flex items-center justify-end gap-3 px-2">
+              بلاد شافها التاريخ
+              <div class="bg-primary/20 p-2 rounded-full"><i data-lucide="map-pin" class="w-6 h-6"></i></div>
+            </h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <!-- Ur -->
+              <div class="relative h-64 rounded-[2rem] overflow-hidden group shadow-sm border-2 border-outline/10 text-right">
+                <img src="https://image.pollinations.ai/prompt/Ancient_Ziggurat_of_Ur_in_Mesopotamia_epic_lighting_ancient_monument_historical_accurate?width=1000&height=800&nologo=true" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" alt="Ur" crossorigin="anonymous" referrerpolicy="no-referrer">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
+                <div class="absolute inset-0 flex flex-col justify-end p-6">
+                  <h4 class="text-white font-black text-3xl mb-2 font-headline drop-shadow-lg">أور الكلدانيين</h4>
+                  <p class="text-white/80 text-sm font-bold leading-relaxed line-clamp-3">مهد الحضارة ونقطة الانطلاق. مدينة عظيمة تركها أبونا إبراهيم وعائلته طاعةً لنداء الإيمان نحو المجهول.</p>
+                </div>
+                <div class="absolute top-4 right-4 bg-white/20 backdrop-blur text-white px-3 py-1 rounded-full text-xs font-bold font-mono">1</div>
+              </div>
+              <!-- Haran -->
+              <div class="relative h-64 rounded-[2rem] overflow-hidden group shadow-sm border-2 border-outline/10 text-right">
+                <img src="https://image.pollinations.ai/prompt/Ancient_middle_eastern_stone_village_of_Haran_at_dusk_historical_biblical_setting_epic_lighting?width=1000&height=800&nologo=true" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" alt="Haran" crossorigin="anonymous" referrerpolicy="no-referrer">
+                <div class="absolute inset-0 bg-gradient-to-t from-orange-950/90 via-black/40 to-transparent"></div>
+                <div class="absolute inset-0 flex flex-col justify-end p-6">
+                  <h4 class="text-white font-black text-3xl mb-2 font-headline drop-shadow-lg">حاران</h4>
+                  <p class="text-white/80 text-sm font-bold leading-relaxed line-clamp-3">محطة الاستراحة التي استقر فيها مع والده تارح، وهناك تلقى نداء الله الواضح لإكمال مسيرته إلى أرض الموعد.</p>
+                </div>
+                <div class="absolute top-4 right-4 bg-white/20 backdrop-blur text-white px-3 py-1 rounded-full text-xs font-bold font-mono">2</div>
+              </div>
+              <!-- Canaan -->
+              <div class="relative h-72 md:col-span-2 rounded-[2rem] overflow-hidden group shadow-sm border-2 border-outline/10 text-right">
+                <img src="https://image.pollinations.ai/prompt/Beautiful_lush_green_valley_of_ancient_Canaan_with_olive_trees_and_golden_sunlight_flowing_streams_promised_land_masterpiece?width=1500&height=800&nologo=true" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" alt="Canaan" crossorigin="anonymous" referrerpolicy="no-referrer">
+                <div class="absolute inset-0 bg-gradient-to-t from-green-950/90 via-black/40 to-transparent"></div>
+                <div class="absolute inset-0 flex flex-col justify-end p-8">
+                  <h4 class="text-white font-black text-3xl mb-2 font-headline drop-shadow-lg text-emerald-100">أرض كنعان</h4>
+                  <p class="text-white/90 text-base font-bold leading-relaxed md:max-w-2xl drop-shadow-md">دي أرض الموعود اللي كلها خير وبركة. المكان اللي إبراهيم بنى فيه خيمته ومذابحه لربنا، وهناك استلم الوعد الكبير إن ولاده هيكونوا كتير زي نجوم السما ورمل البحر.</p>
+                </div>
+                <div class="absolute top-6 right-6 bg-white/20 backdrop-blur text-white px-3 py-1 rounded-full text-xs font-bold font-mono">3</div>
+              </div>
+            </div>
+          </div>
+
+        </section>
+
+        <!-- Map Page -->
+        <section id="view-map" class="view-section hidden px-6 space-y-8">
+          <div class="bg-surface-container-lowest rounded-3xl p-8 shadow-sm hover:shadow-md transition-shadow duration-300 relative overflow-hidden text-right">
+            <h3 class="text-3xl font-black text-primary mb-6 font-headline">خريطة الرحلة</h3>
+            <div class="relative w-full rounded-2xl overflow-hidden border-4 border-surface-container-highest shadow-xl bg-surface-container-low/30">
+              <img 
+                id="map-img"
+                class="w-full h-auto block" 
+                src="" 
+                alt="Full Journey Map"
+                referrerpolicy="no-referrer"
+              />
+              <!-- Map Markers inject -->
+              <div id="map-markers-container" class="absolute inset-0 w-full h-full"></div>
+            </div>
+            <p class="mt-6 text-on-surface-variant text-lg">تتبع مسار أبرآم من أور إلى الأرض التي سيريها الله له. كل نقطة هي فصل جديد من القصة!</p>
+
+            <!-- معلومات المحطة تحت الخريطة -->
+            <div id="location-details-below" class="hidden mt-8 animate-in slide-in-from-bottom duration-500 text-right">
+              <div class="bg-primary/5 rounded-[2rem] p-8 border-2 border-primary/20 relative overflow-hidden">
+                <div class="absolute -top-12 -right-12 w-40 h-40 bg-primary/10 rounded-full blur-3xl"></div>
+                <div class="relative z-10">
+                  <div class="flex items-center justify-end gap-3 mb-4">
+                    <h4 id="detail-title" class="text-3xl font-black text-primary font-headline"></h4>
+                    <div class="bg-primary text-white w-10 h-10 rounded-full flex items-center justify-center shadow-lg">
+                      <i data-lucide="map-pin" class="w-6 h-6"></i>
+                    </div>
+                  </div>
+                  <p id="detail-desc" class="text-on-surface text-lg leading-relaxed font-bold"></p>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Location Details Modal Overlay -->
+            <div id="location-modal" class="fixed inset-0 z-[100] bg-black/60 backdrop-blur-sm hidden flex-col items-center justify-center p-6 opacity-0 transition-opacity duration-300">
+              <div id="location-modal-content" class="bg-surface-container-lowest rounded-[2.5rem] p-8 max-w-sm w-full relative transform scale-95 transition-transform duration-300 shadow-2xl border border-surface-container-highest text-center">
+                <button id="close-modal" class="absolute top-4 left-4 w-10 h-10 bg-surface-container-highest rounded-full flex items-center justify-center text-on-surface hover:scale-110 btn-bounce">
+                  <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+                <div id="modal-number" class="w-16 h-16 rounded-full bg-primary/20 text-primary flex items-center justify-center mb-4 text-2xl font-black mx-auto"></div>
+                <h3 id="modal-title" class="text-2xl font-black text-center mb-4 font-headline text-primary"></h3>
+                <p id="modal-desc" class="text-on-surface text-center leading-relaxed text-sm"></p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Ages Timeline Page -->
+        <section id="view-ages" class="view-section hidden px-6 pb-32">
+          <div class="max-w-2xl mx-auto">
+            <div class="flex items-center justify-between mb-12">
+              <h3 class="text-3xl font-black text-primary font-headline">أعمار إبراهيم</h3>
+              <div class="w-16 h-16 bg-tertiary/10 rounded-2xl flex items-center justify-center text-tertiary">
+                <i data-lucide="hourglass" class="w-8 h-8"></i>
+              </div>
+            </div>
+
+            <div id="ages-timeline" class="space-y-12 relative before:absolute before:inset-y-0 before:right-1/2 before:w-px before:bg-outline/20">
+              <!-- Timeline Items injected via JS -->
+            </div>
+          </div>
+        </section>
+
+        <!-- Characters Page -->
+        <section id="view-characters" class="view-section hidden pt-8 pb-32 px-6">
+          <div class="max-w-md mx-auto">
+            <div class="flex items-center justify-between mb-8">
+              <h3 class="text-3xl font-black text-primary font-headline">شخصيات القصة</h3>
+              <div class="w-16 h-16 bg-secondary/10 rounded-2xl flex items-center justify-center text-secondary">
+                <i data-lucide="users" class="w-8 h-8"></i>
+              </div>
+            </div>
+
+            <div id="characters-container" class="space-y-4">
+              <!-- Characters injected via JS -->
+            </div>
+          </div>
+        </section>
+
+        <!-- Chat Page -->
+        <section id="view-chat" class="view-section hidden flex flex-col h-[calc(100vh-160px)] px-6 overflow-hidden">
+          <div class="flex-1 flex flex-col bg-surface-container-lowest rounded-[2.5rem] shadow-xl border border-outline/20 overflow-hidden">
+            <!-- Chat Header -->
+            <div class="p-6 border-bottom border-outline/10 flex items-center gap-4 bg-primary/5">
+              <div class="w-14 h-14 rounded-full bg-primary/20 flex items-center justify-center text-primary relative">
+                <i data-lucide="user" class="w-8 h-8"></i>
+                <div class="absolute bottom-0 right-0 w-4 h-4 bg-emerald-500 rounded-full border-2 border-white"></div>
+              </div>
+              <div class="text-right">
+                <h4 class="font-black text-primary font-headline">إبراهيم (أبو المؤمنين)</h4>
+                <p class="text-xs text-on-surface-variant font-bold">موجود للحكاوي والحكمة</p>
+              </div>
+              <button onclick="window.clearChat()" class="mr-auto w-10 h-10 flex items-center justify-center rounded-xl bg-error/10 text-error hover:bg-error/20 transition-colors" title="مسح الدردشة">
+                <i data-lucide="trash-2" class="w-5 h-5"></i>
+              </button>
+            </div>
+
+            <!-- Messages Area -->
+            <div id="chat-messages" class="flex-1 overflow-y-auto p-6 space-y-6 flex flex-col scroll-smooth">
+              <div class="bg-surface-container-highest/50 p-4 rounded-2xl rounded-tr-none self-start max-w-[85%] text-right shadow-sm border border-outline/5 text-sm leading-relaxed">
+                يا أهلاً بيك يا ابني. أنا إبراهيم، خليل الله. تحب تسألني عن إيه؟ عن رحلتي ولا وعود ربنا ولا محتاج نصيحة في حاجة شاغلة بالك؟
+              </div>
+            </div>
+
+            <!-- Input Area -->
+            <div class="p-4 bg-surface-container-low border-t border-outline/10">
+              <form id="chat-form" class="flex items-center gap-2">
+                <input type="text" id="chat-input" placeholder="اكتب رسالتك هنا..." class="flex-1 bg-surface-container-lowest p-4 rounded-2xl border-none focus:ring-2 focus:ring-primary/40 shadow-inner text-right font-bold text-sm" />
+                <button type="submit" class="w-14 h-14 bg-primary text-white rounded-2xl flex items-center justify-center shadow-lg hover:scale-105 active:scale-95 transition-all">
+                  <i data-lucide="send" class="w-6 h-6 rotate-180"></i>
+                </button>
+              </form>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <!-- Bottom Nav -->
+      <nav class="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 flex justify-around items-center px-2 py-2 bg-surface-container-lowest/90 backdrop-blur-2xl w-[94%] rounded-3xl max-w-md shadow-2xl border border-outline/10 ring-1 ring-black/5">
+        <button class="nav-item flex flex-col items-center justify-center p-3 rounded-2xl transition-all duration-300 text-primary/40 hover:text-primary active:scale-90" data-tab="home">
+          <i data-lucide="home" class="w-6 h-6"></i>
+          <span class="text-[10px] font-black mt-1">الرئيسية</span>
+        </button>
+        <button class="nav-item flex flex-col items-center justify-center p-3 rounded-2xl transition-all duration-300 text-primary/40 hover:text-primary active:scale-90" data-tab="ages">
+          <i data-lucide="hourglass" class="w-6 h-6"></i>
+          <span class="text-[10px] font-black mt-1">الأعمار</span>
+        </button>
+        <!-- Center Floating Map Button -->
+        <button class="nav-item flex flex-col items-center justify-center bg-primary text-white rounded-2xl p-4 shadow-lg shadow-primary/30 transition-all duration-300 hover:shadow-primary/50" data-tab="map">
+          <i data-lucide="map" class="w-6 h-6"></i>
+          <span class="text-[10px] font-black mt-1">الخريطة</span>
+        </button>
+        <button class="nav-item flex flex-col items-center justify-center p-3 rounded-2xl transition-all duration-300 text-primary/40 hover:text-primary active:scale-90" data-tab="characters">
+          <i data-lucide="users" class="w-6 h-6"></i>
+          <span class="text-[10px] font-black mt-1">الشخصيات</span>
+        </button>
+        <button class="nav-item flex flex-col items-center justify-center p-3 rounded-2xl transition-all duration-300 text-primary/40 hover:text-primary active:scale-90" data-tab="chat">
+          <i data-lucide="message-circle" class="w-6 h-6"></i>
+          <span class="text-[10px] font-black mt-1">الشات</span>
+        </button>
+      </nav>
+    </div>
+
+    <script type="importmap">
+    {
+      "imports": {
+        "@google/genai": "https://esm.run/@google/genai",
+        "lucide": "https://esm.run/lucide",
+        "canvas-confetti": "https://esm.run/canvas-confetti"
+      }
+    }
+    </script>
+    <script type="module">
+      import { GoogleGenAI } from "@google/genai";
+      import { createIcons, ArrowRight, Star, HelpCircle, BookOpen, Play, Pause, CheckCircle2, Lightbulb, MapPin, Home, Map, ScrollText, Trophy, Check, Users, Moon, Sun, Lock, X, Hourglass, MessageCircle, Send, User, ChevronLeft, Trash2 } from "lucide";
+      import confetti from "canvas-confetti";
+
+      // --- DATA LOGIC (Embedded for zero-server compatibility) ---
+      const defaultData = {
+        general: {
+          heroImage: "https://image.pollinations.ai/prompt/Epic_cinematic_shot_of_ancient_patriarch_Abraham_leading_camels_through_a_beautiful_desert_at_sunset_golden_hour_masterpiece?width=2000&height=800&nologo=true",
+          mapImage: "https://image.pollinations.ai/prompt/Ancient_worn_treasure_map_of_middle_east_mesopotamia_canaan_parchment_paper_with_ink_drawings_highly_detailed?width=1200&height=800&nologo=true",
+          successMessage: "كدا زي الفل!",
+          pendingMessage: "تم بنجاح يا بطل!",
+          chatbotContext: "أنت إبراهيم (أبو المؤمنين). اتكلم باللهجة المصرية العامية البسيطة والودودة. احكي حكاياتك وتجاربك من وقت ما كنت في أور لحد ما وصلت أرض الموعود. خليك صبور وحكيم وكلامك فيه إيمان وبركة."
+        },
+        locations: [
+          { id: "ur", title: "أور الكلدانيين", description: "دي كانت أول بلد عاش فيها أبرآم. مدينة كبيرة ومشهورة في بلاد الرافدين، معروفة بمبانيها العالية وتجارتها. هنا أبرآم سمع نداء ربنا لأول مرة عشان يسيب أهله وبلده ويبدأ الرحلة.", top: "85", left: "80", color: "primary" },
+          { id: "haran", title: "حاران", description: "دي المحطة التانية في السكة. قعد فيها أبرآم هو وعيلته شوية قبل ما يكملوا طريقهم لكنعان. هنا والده تارح اتوفى، وربنا جدد كلامه مع أبرآم عشان يكمل.", top: "40", left: "65", color: "tertiary" },
+          { id: "shechem", title: "شكيم", description: "أول حتة وصلها أبرآم في أرض كنعان. هنا ربنا ظهر له وقاله: 'الأرض دي هديها لولادك'. فبنَى أبرآم هناك أول مذبح لربنا.", top: "50", left: "35", color: "secondary" },
+          { id: "bethel", title: "بيت إيل", description: "أبرآم نصب خيمته بين بيت إيل وعاي، وبنى هناك مذبح ودعا باسم ربنا. كلمة 'بيت إيل' معناها 'بيت الله'.", top: "58", left: "32", color: "amber-500" },
+          { id: "egypt", title: "مصر", description: "أبرآم نزل مصر عشان كان فيه مجاعة صعبة قوي. وهناك قابل تحديات كبيرة، بس ربنا حافظ عليه وعلى مراته سارة ورجعوا بالسلامة.", top: "80", left: "15", color: "error" },
+          { id: "hebron", title: "حبرون (ممرى)", description: "أبرآم سكن عند شجر البلوط في ممرى بحبرون، وبنى هناك مذبح لربنا. المكان ده قضى فيه وقت كبير من حياته.", top: "62", left: "30", color: "secondary" }
+        ],
+        characters: [
+          { id: "abram", name: "أبرآم (إبراهيم)", description: "أبو الأنبياء. سمع كلام ربنا وساب كل حاجة وراه عشان يبدأ أكبر رحلة إيمان في التاريخ.", image: "https://image.pollinations.ai/prompt/biblical_patriarch_abraham_full_body_character_design_ancient_clothing_white_background?width=500&height=800&nologo=true", color: "primary" },
+          { id: "sarah", name: "ساراي (سارة)", description: "مرات أبرآم الوفية. وقفت جنبه في كل خطوة وكانت شريكته في وعد ربنا العظيم.", image: "https://image.pollinations.ai/prompt/biblical_matriarch_sarah_beautiful_ancient_clothing_full_body_white_background?width=500&height=800&nologo=true", color: "tertiary" },
+          { id: "lot", name: "لوط", description: "ابن أخو أبرآم. سافر مع عمه من أول الرحلة وساب معاه أور الكلدانيين.", image: "https://image.pollinations.ai/prompt/biblical_lot_nephew_of_abraham_young_man_ancient_clothing_full_body_white_background?width=500&height=800&nologo=true", color: "secondary" },
+          { id: "terah", name: "تارح", description: "والد أبرآم. هو اللي بدأ السكة من أور وكان رايح كنعان، بس وقف ومات في حاران.", image: "https://image.pollinations.ai/prompt/biblical_terah_old_father_of_abraham_ancient_clothing_full_body_white_background?width=500&height=800&nologo=true", color: "secondary" }
+        ],
+        ages: [
+          { id: "75", age: "٧٥ سنة", title: "الخروج من حاران", image: "https://image.pollinations.ai/prompt/Old_patriarch_Abraham_75_years_old_leaving_Haran_with_his_family_ancient_biblical_white_background?width=500&height=500&nologo=true", description: "لما كمل ٧٥ سنة، أبرآم سمع كلام ربنا وساب حاران وخد عيلته وكل اللي يملكه وطلع على أرض كنعان." },
+          { id: "86", age: "٨٦ سنة", title: "ولادة إسماعيل", image: "https://image.pollinations.ai/prompt/Abraham_middle_aged_beholding_his_firstborn_son_Ishmael_ancient_biblical_setting_white_background?width=500&height=500&nologo=true", description: "ابنه إسماعيل اتولد من هاجر، وإبراهيم كان عنده وقتها ٨٦ سنة." },
+          { id: "99", age: "٩٩ سنة", title: "عهد الختان", image: "https://image.pollinations.ai/prompt/God_talking_to_Abraham_vision_99_years_old_patriarch_ancient_biblical_white_background?width=500&height=500&nologo=true", description: "لما بقى عنده ٩٩ سنة، ربنا ظهرله وعمل معاه عهد أبدي، وغير اسمه من 'أبرآم' لـ 'إبراهيم'." },
+          { id: "100", age: "١٠٠ سنة", title: "ولادة إسحق", image: "https://image.pollinations.ai/prompt/Abraham_very_old_smiling_beholding_baby_Isaac_miracle_ancient_biblical_white_background?width=500&height=500&nologo=true", description: "المعجزة حصلت! إسحق اتولد من سارة وإبراهيم عنده ١٠٠ سنة، والوعد اتحقق بذرية مباركة." },
+          { id: "175", age: "١٧٥ سنة", title: "نهاية الرحلة", image: "https://image.pollinations.ai/prompt/Biblical_death_of_Abraham_peaceful_old_age_sons_Isaac_and_Ishmael_standing_by_white_background?width=500&height=500&nologo=true", description: "إبراهيم اتوفى وهو عنده ١٧٥ سنة، بعد حياة طويلة ومباركة، واتدفن في مغارة المكفيلة." }
+        ]
+      };
+
+      function getAppData() {
+        const json = localStorage.getItem('abrahamAppData');
+        const stored = json ? JSON.parse(json) : {};
+        return {
+          general: { ...defaultData.general, ...(stored.general || {}) },
+          locations: stored.locations || defaultData.locations,
+          characters: stored.characters || defaultData.characters,
+          ages: stored.ages || defaultData.ages
+        };
+      }
+
+      const appData = getAppData();
+      // Use a constant for the key or extract from injected script if possible
+      // Since this is for client-side direct opening, the key MUST be provided somehow.
+      // We'll fall back to searching for a global or localStorage key.
+      const GEMINI_API_KEY = ""; 
+      const storedKey = appData?.general?.geminiApiKey || "";
+      const aiToken = GEMINI_API_KEY || storedKey || (typeof process !== 'undefined' ? process.env.GEMINI_API_KEY : '');
+      const ai = new GoogleGenAI({ apiKey: aiToken });
+      
+      createIcons({
+        icons: { ArrowRight, Star, HelpCircle, BookOpen, Play, Pause, CheckCircle2, Lightbulb, MapPin, Home, Map, ScrollText, Trophy, Check, Users, Moon, Sun, Lock, X, Hourglass, MessageCircle, Send, User, ChevronLeft, Trash2 }
+      });
+
+      let currentView = 'home';
+      const savedChat = localStorage.getItem('abrahamChatHistory');
+      let chatHistory = savedChat ? JSON.parse(savedChat) : []; 
+
+      function saveChat() { localStorage.setItem('abrahamChatHistory', JSON.stringify(chatHistory)); }
+      window.clearChat = () => {
+        chatHistory = []; localStorage.removeItem('abrahamChatHistory');
+        const chatMessagesContent = document.getElementById('chat-messages');
+        if (chatMessagesContent) chatMessagesContent.innerHTML = '';
+      };
+
+      const sounds = {
+        click: new Audio('https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3'),
+        success: new Audio('https://assets.mixkit.co/active_storage/sfx/1435/1435-preview.mp3'),
+        pop: new Audio('https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3'),
+        transition: new Audio('https://assets.mixkit.co/active_storage/sfx/2572/2572-preview.mp3')
+      };
+      function playSound(n) { const s = sounds[n]; if(s){ s.currentTime=0; s.play().catch(()=>{}); } }
+
+      const navItems = document.querySelectorAll('.nav-item');
+      const viewSections = document.querySelectorAll('.view-section');
+      const chatForm = document.getElementById('chat-form');
+      const chatInput = document.getElementById('chat-input');
+      const chatMessages = document.getElementById('chat-messages');
+      const themeIcon = document.getElementById('theme-icon');
+
+      window.switchViewTo = (v) => switchView(v);
+
+      function initTheme() {
+        const t = localStorage.getItem('theme');
+        if (t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+          document.documentElement.classList.add('dark');
+          if (themeIcon) themeIcon.setAttribute('data-lucide', 'sun');
+        } else {
+          document.documentElement.classList.remove('dark');
+          if (themeIcon) themeIcon.setAttribute('data-lucide', 'moon');
+        }
+        createIcons({ icons: { Moon, Sun } });
+      }
+
+      function toggleTheme() {
+        playSound('pop');
+        const isDark = document.documentElement.classList.toggle('dark');
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        if (themeIcon) themeIcon.setAttribute('data-lucide', isDark ? 'sun' : 'moon');
+        createIcons({ icons: { Moon, Sun } });
+      }
+
+      function renderData() {
+        const { general = {}, locations = [], characters = [], ages = [] } = appData;
+        const h = document.getElementById('hero-img'); if(h && general.heroImage) h.src = general.heroImage;
+        const m = document.getElementById('map-img'); if(m && general.mapImage) m.src = general.mapImage;
+        
+        const mapContainer = document.getElementById('map-markers-container');
+        if (mapContainer && locations.length) {
+          mapContainer.innerHTML = locations.map((l, i) => `
+            <div class="absolute -translate-x-1/2 -translate-y-1/2 z-10" style="top: ${l.top}%; left: ${l.left}%">
+              <div class="group relative cursor-pointer marker-btn flex flex-col items-center" data-location="${l.id}">
+                <div class="bg-primary text-white rounded-full flex items-center justify-center shadow-lg hover:scale-125 transition-all border-white ${i===0?'animate-bounce w-12 h-12 border-4 text-xl':'w-8 h-8 border-2 text-sm'}">
+                  ${i+1}
+                </div>
+                <div class="absolute bottom-full mb-2 bg-white px-3 py-1 rounded-lg shadow-md text-xs font-bold whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity z-20 text-on-surface">
+                  ${l.title}
+                </div>
+              </div>
+            </div>`).join('');
+        }
+
+        const charCont = document.getElementById('characters-container');
+        if (charCont) {
+          charCont.innerHTML = characters.map(c => `
+            <div class="relative group cursor-pointer mt-12 mb-4">
+              <div class="absolute inset-0 bg-white dark:bg-surface-container-highest rounded-[2rem] shadow-sm border border-outline/20 group-hover:border-primary/40 group-hover:shadow-xl transition-all duration-500 overflow-hidden"></div>
+              <div class="relative z-10 p-6 flex gap-6 mt-6 items-center">
+                <div class="w-[125px] h-[210px] flex-shrink-0 rounded-[1.5rem] bg-surface-container-low dark:bg-surface-container-highest border-2 border-outline relative flex items-end justify-center shadow-inner mt-6">
+                  <img src="${c.image}" class="absolute bottom-0 right-1/2 translate-x-1/2 w-[240%] max-w-none h-[180%] object-contain object-bottom group-hover:scale-110 transition-transform duration-500 z-20" alt="${c.name}" />
+                </div>
+                <div class="flex-1 pl-4">
+                  <h4 class="font-black text-3xl text-primary mb-3 font-headline">${c.name}</h4>
+                  <p class="text-[15px] text-on-surface-variant font-bold">${c.description}</p>
+                </div>
+              </div>
+            </div>`).join('');
+        }
+
+        const ageCont = document.getElementById('ages-timeline');
+        if (ageCont) {
+          ageCont.innerHTML = ages.map(a => `
+            <div class="relative flex items-center justify-between w-full group">
+              <div class="w-full bg-white dark:bg-surface-container-highest rounded-[2rem] p-6 shadow-sm border border-outline/10 hover:shadow-xl transition-all duration-500">
+                <div class="flex flex-col md:flex-row gap-6 items-center text-right">
+                  <div class="w-48 h-48 flex-shrink-0 bg-surface-container-low dark:bg-surface-container-highest rounded-2xl overflow-hidden">
+                    <img src="${a.image}" class="w-full h-full object-contain group-hover:scale-110 transition-all duration-700" alt="${a.title}" />
+                  </div>
+                  <div class="flex-1">
+                    <h4 class="text-2xl font-black text-primary mb-3 font-headline">${a.title} (${a.age})</h4>
+                    <p class="text-on-surface-variant font-bold leading-relaxed text-sm">${a.description}</p>
+                  </div>
+                </div>
+              </div>
+            </div>`).join('');
+        }
+        createIcons({ icons: { ArrowRight, Star, HelpCircle, BookOpen, Play, Pause, CheckCircle2, Lightbulb, MapPin, Home, Map, ScrollText, Trophy, Check, Users, Moon, Sun, Lock, X, Hourglass, MessageCircle, Send, User, ChevronLeft, Trash2 } });
+        attachDynamicEvents();
+      }
+
+      function attachDynamicEvents() {
+        document.querySelectorAll('.marker-btn').forEach(b => b.onclick = () => { playSound('click'); selectLocation(b.dataset.location); });
+      }
+
+      async function handleChat(e) {
+        e.preventDefault();
+        const t = chatInput.value.trim(); if(!t) return;
+        addMessage('user', t); chatInput.value = ''; playSound('pop');
+        chatHistory.push({ role: "user", parts: [{ text: t }] });
+        const tid = addMessage('ai', '...', true);
+        
+        if(!aiToken) { 
+          updateMessage(tid, "يا ابني، مفتاح الذكاء (API Key) مش موجود. روح لوحة التحكم وحطه هناك الأول."); 
+          return; 
+        }
+
+        try {
+          // استخدام النمط الصحيح والمرشح للمكتبة الحديثة
+          const response = await ai.models.generateContent({
+            model: "gemini-3-flash-preview",
+            contents: chatHistory,
+            config: {
+              systemInstruction: appData.general.chatbotContext || "أنت إبراهيم، تتحدث باللهجة المصرية العامة."
+            }
+          });
+          
+          const txt = response.text || "مش عارف أقول إيه الصراحة.. جرب تاني؟";
+          updateMessage(tid, txt);
+          chatHistory.push({ role: "model", parts: [{ text: txt }] });
+          saveChat(); 
+          if(txt.length > 50) playSound('success');
+        } catch(err) { 
+          console.error("Gemini Error:", err);
+          let errorMsg = "فيه مشكلة في الشبكة يا ابني..";
+          if (err.message?.includes("API_KEY_INVALID")) {
+            errorMsg = "مفتاح الـ API اللي حطيته غلط. اتأكد منه في لوحة التحكم.";
+          }
+          updateMessage(tid, errorMsg + " (" + (err.message || "Unknown error") + ")"); 
+        }
+      }
+
+      function addMessage(r, t) {
+        const id = Date.now(); const d = document.createElement('div'); d.id = `msg-${id}`;
+        d.className = r === 'user' ? 'bg-primary text-white p-4 rounded-2xl self-end text-sm font-bold' : 'bg-surface-variant p-4 rounded-2xl self-start text-sm leading-relaxed';
+        d.style.margin = '10px 0'; d.textContent = t;
+        chatMessages.appendChild(d); chatMessages.scrollTop = chatMessages.scrollHeight;
+        return id;
+      }
+      function updateMessage(i, t) { const d = document.getElementById(`msg-${i}`); if(d) d.textContent = t; }
+
+      function switchView(v) {
+        if (currentView !== v) playSound('transition');
+        currentView = v;
+        viewSections.forEach(s => s.id === `view-${v}` ? s.classList.remove('hidden') : s.classList.add('hidden'));
+        navItems.forEach(n => n.dataset.tab === v ? n.classList.add('opacity-100','bg-primary/10') : n.classList.remove('opacity-100','bg-primary/10'));
+      }
+
+      function selectLocation(l) {
+        // البحث عن المكان بكل الطرق الممكنة (كتابة ID كـ string أو رقم)
+        const d = appData.locations.find(x => String(x.id) === String(l));
+        if(d) {
+          // التحديث للجزء اللي تحت الخريطة
+          const detailsBelow = document.getElementById('location-details-below');
+          if(detailsBelow) {
+            document.getElementById('detail-title').textContent = d.title;
+            document.getElementById('detail-desc').textContent = d.description;
+            detailsBelow.classList.remove('hidden');
+            // سكرول بسيط عشان المستخدم يشوف الكلام
+            detailsBelow.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          }
+
+          // الـ Modal يفضل شغال كخيار إضافي
+          const mod = document.getElementById('location-modal');
+          if (mod) {
+            document.getElementById('modal-title').textContent = d.title;
+            document.getElementById('modal-desc').textContent = d.description;
+            mod.classList.remove('hidden');
+            mod.classList.add('flex');
+            // تأخير بسيط للانيميشن
+            setTimeout(() => mod.classList.add('opacity-100'), 10);
+            const content = document.getElementById('location-modal-content');
+            if (content) content.classList.add('scale-100');
+          }
+          
+          createIcons({ icons: { MapPin, X } });
+        } else {
+          console.warn("Location not found:", l);
+        }
+      }
+
+      const closeModalBtn = document.getElementById('close-modal');
+      if (closeModalBtn) {
+        closeModalBtn.onclick = () => {
+          const mod = document.getElementById('location-modal');
+          const content = document.getElementById('location-modal-content');
+          if (mod) {
+            mod.classList.remove('opacity-100');
+            if (content) content.classList.remove('scale-100');
+            setTimeout(() => mod.classList.add('hidden'), 300);
+          }
+        };
+      }
+      
+      if(chatForm) chatForm.onsubmit = handleChat;
+      navItems.forEach(i => i.onclick = () => switchView(i.dataset.tab));
+      
+      const themeToggleBtn = document.getElementById('theme-toggle');
+      if (themeToggleBtn) themeToggleBtn.onclick = toggleTheme;
+
+      initTheme(); renderData();
+      if(chatHistory.length) chatHistory.forEach(m => addMessage(m.role==='user'?'user':'ai', m.parts[0].text));
+      switchView('home');
+    </script>
+  </body>
+</html>
